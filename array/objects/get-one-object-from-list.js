@@ -2,7 +2,7 @@
 
 const example = [{
   name: 'Xii Jin Ping',
-  age: 65,
+  age: 6500,
   gender: 'M'
 }, {
   name: 'Donald Trump',
