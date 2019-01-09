@@ -124,6 +124,7 @@
   '}',
   '',
   '.lffg-post-badge__text {',
+  '  background-color: #000;',
   '  display: block;',
   '  width: 100px;',
   '  text-align: center;',
