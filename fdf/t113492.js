@@ -153,7 +153,7 @@
   '  background-color: #fff;',
   '  transform: rotate(-45deg);',
   '  position: absolute;',
-  '  left: -9px;',
+  '  left: -8px;',
   '  z-index: 2;',
   '  transition: all linear 95ms;',
   '}',
