@@ -63,7 +63,7 @@
       return false;
     }
 
-    const image = function() {
+    var image = function() {
       return localStorage.getItem(STORAGE_KEY);
     };
 
