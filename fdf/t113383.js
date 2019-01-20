@@ -2,7 +2,7 @@
  * Creates a post badge for each post.
  * (Only works in phpBB3 and ModernBB).
  *
- * @author Luiz Felipe F. <https://lffg.github.com>
+ * @author Luiz Felipe F. <https://lffg.github.io>
  * @see https://ajuda.forumeiros.com/t113383-
  * @see https://github.com/lffg/code-in-js/blob/master/fdf/t113383.js
  * @license MIT
