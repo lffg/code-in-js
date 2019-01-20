@@ -1,0 +1,14 @@
+{
+  "semi": false,
+  "arrowParens": "always",
+  "singleQuote": true,
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": "fdf/*.js",
+      "options": {
+        "semi": true
+      }
+    }
+  ]
+}
