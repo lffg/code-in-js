@@ -25,7 +25,7 @@
    */
   function generateElement() {
     var choicesList = $.map(imageList, function(image) {
-      return $('<li class="lffg-bgimage__choice">')
+      return $('<div class="lffg-bgimage__choice">')
         .attr('data-image', image)
         .html($('<img />', { src: image }).prop('outerHTML'))
         .prop('outerHTML');
@@ -33,16 +33,29 @@
 
     return $(
       [
-        '<div class="lffg-bgimage">',
-        '  <header class="lffg-bgimage__header">',
-        '    <span>Selecionar Imagem de Fundo</span>',
-        '  </header>',
-        '  <ul class="lffg-bgimage__picker">',
-        '    ' + choicesList.join('\n'),
-        '  </ul>',
+        '<div class="lffg-bgimage lffg-bgimage--hidden">',
+        '  <a class="lffg-bgimage__toggler" title="Mudar a imagem de fundo">',
+        '    <span>🎨</span>',
+        '  </a>',
+        '  <div class="lffg-bgimage__inner">',
+        '    <header class="lffg-bgimage__header">',
+        '      <span>Selecionar Imagem de Fundo</span>',
+        '    </header>',
+        '    <div class="lffg-bgimage__picker-wrapper">',
+        '      <div class="lffg-bgimage__picker">',
+        '        ' + choicesList.join('\n'),
+        '      </div>',
+        '    </div>',
+        '  </div>',
         '</div>'
       ].join('\n')
     );
+  }
+
+  function handleToggle() {
+    var $target = $(this);
+
+    $target.parents('.lffg-bgimage').toggleClass('lffg-bgimage--hidden');
   }
 
   function setBg() {
@@ -80,9 +93,124 @@
     }
 
     generateElement()
+      .on('click', function(event) {
+        event.stopPropagation();
+      })
+      .on('click', '.lffg-bgimage__toggler', handleToggle)
       .on('click', '.lffg-bgimage__choice', handleChange)
       .appendTo('body');
 
+    $(window).on('click', function() {
+      if (!$('.lffg-bgimage').is('.lffg-bgimage--hidden')) {
+        $('.lffg-bgimage').addClass('lffg-bgimage--hidden');
+      }
+    });
+
     $('<style>', { text: styles.join('\n') }).appendTo('head');
   });
-})(jQuery, 'lffg-current-bgimage', []);
+})(jQuery, 'lffg-current-bgimage', [
+  '.lffg-bgimage {',
+  '  display: block;',
+  '  border: solid 1px #ddd;',
+  '  border-left: 0;',
+  '  position: fixed;',
+  '  top: 10vh;',
+  '  left: 0;',
+  '  background-color: #fff;',
+  '  box-shadow: 4px 4px rgba(0, 0, 0, 0.39);',
+  '  z-index: 9999;',
+  '  transition: all ease-in-out 300ms;',
+  '}',
+  '',
+  '.lffg-bgimage.lffg-bgimage--hidden {',
+  '  transform: translateX(calc(-100% - 25px));',
+  '}',
+  '',
+  '.lffg-bgimage__toggler {',
+  '  display: flex;',
+  '  justify-content: center;',
+  '  align-items: center;',
+  '  width: 45px;',
+  '  height: 45px;',
+  '  position: absolute;',
+  '  border: solid 1px #ddd;',
+  '  left: calc(100% + 1px + 1.5rem);',
+  '  background-color: #fff;',
+  '  font-size: 30px;',
+  '  box-shadow: 4px 4px rgba(0, 0, 0, 0.39);',
+  '  transition: all linear 95ms;',
+  '  cursor: pointer;',
+  '}',
+  '',
+  '.lffg-bgimage__toggler::before {',
+  '  content: "";',
+  '  width: 15px;',
+  '  height: 15px;',
+  '  border: solid 1px transparent;',
+  '  border-top-color: #ddd;',
+  '  border-left-color: #ddd;',
+  '  background-color: #fff;',
+  '  transform: rotate(-45deg);',
+  '  position: absolute;',
+  '  left: -9px;',
+  '  z-index: 2;',
+  '  transition: all linear 95ms;',
+  '}',
+  '',
+  '.lffg-bgimage__toggler span {',
+  '  position: relative;',
+  '  z-index: 2;',
+  '}',
+  '',
+  '.lffg-bgimage__toggler:hover,',
+  '.lffg-bgimage__toggler:hover::before {',
+  '  background-color: #39c;',
+  '}',
+  '',
+  '.lffg-bgimage__header {',
+  '  padding: 1rem;',
+  '  border-bottom: solid 1px #ddd;',
+  '  background-color: #39c;',
+  '  color: #fff;',
+  '  font-family: "Trebuchet MS", sans-serif;',
+  '  font-size: 1.15rem;',
+  '  text-transform: uppercase;',
+  '}',
+  '',
+  '.lffg-bgimage__picker-wrapper {',
+  '  max-height: 300px;',
+  '  overflow-y: scroll;',
+  '}',
+  '',
+  '.lffg-bgimage__picker {',
+  '  display: flex;',
+  '  justify-content: center;',
+  '  align-items: center;',
+  '  flex-direction: column;',
+  '}',
+  '',
+  '.lffg-bgimage__choice {',
+  '  display: block;',
+  '  width: 120px;',
+  '  height: 120px;',
+  '  margin-bottom: 1rem;',
+  '  border: solid 1px #ddd;',
+  '  border-radius: 500px;',
+  '  overflow: hidden;',
+  '  cursor: pointer;',
+  '  transition: all linear 100ms;',
+  '}',
+  '',
+  '.lffg-bgimage__choice:hover {',
+  '  box-shadow: 0 0 0 5px #39c;',
+  '}',
+  '',
+  '.lffg-bgimage__choice:first-child {',
+  '  margin-top: 1rem;',
+  '}',
+  '',
+  '.lffg-bgimage__choice img {',
+  '  width: 140px;',
+  '  height: 140px;',
+  '}'
+]);
