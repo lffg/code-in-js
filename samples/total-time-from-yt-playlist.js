@@ -2,6 +2,7 @@ const seconds = [...document.querySelectorAll(
   '#contents > ytd-playlist-video-renderer'
 )]
   .map((el) => el.querySelector('ytd-thumbnail-overlay-time-status-renderer'))
+  .filter((el) => !!el)
   .map(({ textContent }) => textContent)
   .map((duration) => duration.trim())
   .map((time) => time.split(':').map((t) => parseInt(t)))
