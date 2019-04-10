@@ -1,7 +1,7 @@
 /**
  * Create a refresh button on the latest topics.
  *
- * @author Luiz Felipe F. <https://lffg.github.io>
+ * @author Luiz Felipe Gonçalves <https://luizfelipe.dev>
  * @see https://ajuda.forumeiros.com/t113295-
  * @see https://github.com/lffg/code-in-js/blob/master/fdf/t113295.js
  * @license MIT
