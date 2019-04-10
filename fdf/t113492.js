@@ -1,7 +1,7 @@
 /**
  * Forum background image selector.
  *
- * @author Luiz Felipe F. <https://lffg.github.io>
+ * @author Luiz Felipe Gonçalves <https://luizfelipe.dev>
  * @see https://ajuda.forumeiros.com/t113492-
  * @see https://github.com/lffg/code-in-js/blob/master/fdf/t113492.js
  * @license MIT
