@@ -1,4 +1,3 @@
-const { promisify } = require('util')
 const path = require('path')
 
 const { setValue, getValue, edit } = require('./interact')
@@ -7,7 +6,7 @@ const DB_PATH = path.join(__dirname, 'db')
 const DOCUMENT_PATH = path.join(DB_PATH, 'store.json')
 
 /** @param {string} p */
-async function main (p) {
+async function main(p) {
   // Sets the initial value:
   await setValue(p, JSON.stringify([]))
 

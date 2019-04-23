@@ -7,15 +7,15 @@ const readFile = promisify(fs.readFile)
 
 /**
  * Check if the given type is absolute.
- * 
+ *
  * @param  {string} p
  * @return {boolean}
- * 
+ *
  * @throws {Error} If the path isn't absolute.
- * 
+ *
  * @private
  */
-function checkPath (p) {
+function checkPath(p) {
   if (path.isAbsolute(p)) {
     return true
   }
@@ -25,34 +25,34 @@ function checkPath (p) {
 
 /**
  * Assert the type of a given value.
- * 
+ *
  * @param  {any} value
  * @param  {string} type
  * @return {boolean}
- * 
+ *
  * @throws {Error} If the value is not of the given type.
- * 
+ *
  * @private
  */
-function checkType (value, type) {
+function checkType(value, type) {
   if (typeof value === type) {
     return true
-  } 
+  }
 
   throw new TypeError('Invalid type.')
 }
 
 /**
  * Sets a new value for the document.
- * 
- * @param  {string} p 
- * @param  {string} value 
+ *
+ * @param  {string} p
+ * @param  {string} value
  * @param  {any} options
  * @return {Promise<void>}
- * 
+ *
  * @public
  */
-async function setValue (p, value, options = 'utf8') {
+async function setValue(p, value, options = 'utf8') {
   checkPath(p)
   checkType(value, 'string')
 
@@ -61,15 +61,15 @@ async function setValue (p, value, options = 'utf8') {
 
 /**
  * Returns the contents of the document.
- * 
+ *
  * @param  {string} p
  * @param  {boolean} prettyPrint
  * @param  {any} options
  * @return {Promise<string | Buffer>}
- * 
+ *
  * @public
  */
-async function getValue (p, prettyPrint = false, options = 'utf8') {
+async function getValue(p, prettyPrint = false, options = 'utf8') {
   const contents = await readFile(p, options)
   if (!prettyPrint) return contents
   return JSON.stringify(JSON.parse(contents), null, 2)
@@ -77,15 +77,15 @@ async function getValue (p, prettyPrint = false, options = 'utf8') {
 
 /**
  * Edits the document.
- * 
- * @param  {string} p 
- * @param  {(oldValue: string) => Promise<string> | string} callback 
+ *
+ * @param  {string} p
+ * @param  {(oldValue: string) => Promise<string> | string} callback
  * @param  {any} options
  * @return {Promise<void>}
- * 
+ *
  * @public
  */
-async function edit (p, callback, options = 'utf8') {
+async function edit(p, callback, options = 'utf8') {
   checkPath(p)
   checkType(callback, 'function')
 
@@ -95,5 +95,7 @@ async function edit (p, callback, options = 'utf8') {
 }
 
 module.exports = {
-  setValue, getValue, edit
+  setValue,
+  getValue,
+  edit
 }

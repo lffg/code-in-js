@@ -7,42 +7,40 @@
  * @license MIT
  */
 
-(function($, styles) {
-  'use strict';
-
-  var IMAGE_SOURCE = 'https://i.imgur.com/aTCsNba.png';
-  var CONTENT_SELECTOR = '#comments_scroll_div';
+;(function($, styles) {
+  const IMAGE_SOURCE = 'https://i.imgur.com/aTCsNba.png'
+  const CONTENT_SELECTOR = '#comments_scroll_div'
 
   function refreshContent() {
-    var $self = $(this);
+    const $self = $(this)
 
     // Prevent multiple clicks:
     if ($self.is('.in-use')) {
-      return;
+      return
     }
 
-    $self.addClass('in-use');
+    $self.addClass('in-use')
 
     $.get(window.location.pathname, function(response) {
-      $(CONTENT_SELECTOR).html($(CONTENT_SELECTOR, response).html());
-      $self.removeClass('in-use');
-    });
+      $(CONTENT_SELECTOR).html($(CONTENT_SELECTOR, response).html())
+      $self.removeClass('in-use')
+    })
   }
 
   $(function() {
-    var $trigger = $('<img />', {
+    const $trigger = $('<img />', {
       src: IMAGE_SOURCE || 'https://i.imgur.com/aTCsNba.png'
     })
       .addClass('lf-refresh-trigger')
-      .on('click', refreshContent);
+      .on('click', refreshContent)
 
     $(CONTENT_SELECTOR)
       .parents('.module')
       .find('.h3')
-      .append($trigger);
+      .append($trigger)
 
-    $('head').append($('<style>', { text: styles.join('\n') }));
-  });
+    $('head').append($('<style>', { text: styles.join('\n') }))
+  })
 })(jQuery, [
   '.h3 {',
   '  position: relative;',
@@ -60,4 +58,4 @@
   '  cursor: not-allowed;',
   '  opacity: .7;',
   '}'
-]);
+])

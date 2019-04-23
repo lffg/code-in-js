@@ -26,7 +26,7 @@ async function getScriptLabel(file) {
 
   return matches[0]
     .split('\n')
-    .map((line) => line.replace(/^\ ?(\/\*{2}|\*\/?)/gi, '').trim())
+    .map((line) => line.replace(/^ ?(\/\*{2}|\*\/?)/gi, '').trim())
     .filter((line) => /\S/.test(line) && !/^@\w+/.test(line))
     .map((line, index, list) => `${line}  `)
     .join('\n')
@@ -82,7 +82,7 @@ function generateContents(labels) {
       [
         '<tr>',
         `<td><a href="${GH_LINK}/${fileName}"><code>${fileName}</code></a></td>`,
-        `<td>${label.replace(/\ {2}/g, '<br />')}</td>`,
+        `<td>${label.replace(/ {2}/g, '<br />')}</td>`,
         '</tr>'
       ].join('')
     ),
