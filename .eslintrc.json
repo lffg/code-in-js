@@ -14,10 +14,18 @@
   },
   "overrides": [
     {
-      "files": "./fdf/*",
+      "files": "fdf/*.js",
       "rules": {
         "strict": ["error", "global"],
-        "prettier/prettier": ["error", { "semi": true }]
+        "prettier/prettier": [
+          "error",
+          {
+            "semi": true,
+            "arrowParens": "always",
+            "singleQuote": true,
+            "printWidth": 80
+          }
+        ]
       }
     }
   ]
