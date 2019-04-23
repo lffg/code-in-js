@@ -1,0 +1,9 @@
+{
+  "name": "@lffg/code-in-js",
+  "version": "1.0.0",
+  "description": "Samples of useful (or not) JavaScript codes.",
+  "repository": "https://github.com/lffg/code-in-js.git",
+  "author": "Luiz Felipe Gonçalves <https://luizfelipe.dev>",
+  "license": "MIT",
+  "private": true
+}
