@@ -1,0 +1,11 @@
+{
+  "extends": ["lffg"],
+  "overrides": [
+    {
+      "files": "./fdf/**/*",
+      "rules": {
+        "prettier/prettier": ["error", { "semi": true }]
+      }
+    }
+  ]
+}
