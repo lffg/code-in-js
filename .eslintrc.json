@@ -1,9 +1,22 @@
 {
   "extends": ["lffg"],
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
+  "rules": {
+    "no-restricted-globals": "off",
+    "no-unused-vars": "off"
+  },
+  "globals": {
+    "jQuery": true
+  },
   "overrides": [
     {
-      "files": "./fdf/**/*",
+      "files": "./fdf/*",
       "rules": {
+        "strict": ["error", "global"],
         "prettier/prettier": ["error", { "semi": true }]
       }
     }
