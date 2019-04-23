@@ -8,7 +8,7 @@
  * @license MIT
  */
 
-;(function($, styles) {
+(function($, styles) {
   const colorMap = [
     {
       color: '#ff0000',
@@ -19,7 +19,7 @@
       text: 'Staff'
     }
     // Kepp adding more objects.
-  ]
+  ];
 
   /**
    * Get the YIQ value of an hex color. {@link https://github.com/lffg/yiq}
@@ -29,19 +29,19 @@
    */
   function getYiq(colorHex) {
     if (!/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(colorHex)) {
-      return '#fff'
+      return '#fff';
     }
 
     if (colorHex.length === 4) {
-      colorHex = colorHex.replace(/^#(.)(.)(.)/i, '#$1$1$2$2$3$3')
+      colorHex = colorHex.replace(/^#(.)(.)(.)/i, '#$1$1$2$2$3$3');
     }
 
-    const r = parseInt(colorHex.substr(1, 2), 16)
-    const g = parseInt(colorHex.substr(3, 2), 16)
-    const b = parseInt(colorHex.substr(5, 2), 16)
+    const r = parseInt(colorHex.substr(1, 2), 16);
+    const g = parseInt(colorHex.substr(3, 2), 16);
+    const b = parseInt(colorHex.substr(5, 2), 16);
 
-    const yiq = (r * 299 + g * 587 + b * 114) / 1000
-    return yiq >= 128 ? '#000' : '#fff'
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 128 ? '#000' : '#fff';
   }
 
   /**
@@ -60,50 +60,50 @@
     function $pseudo(className) {
       return $('<span>')
         .css({ borderColor: color })
-        .addClass('lffg-post-badge__' + className)
+        .addClass('lffg-post-badge__' + className);
     }
 
     const $text = $('<span class="lffg-post-badge__text">')
       .css({ backgroundColor: color, color: yiq })
       .text(text) // <-- Prevent self-XSS.
       .prepend($pseudo('before'))
-      .append($pseudo('after'))
+      .append($pseudo('after'));
 
-    return '<div class="lffg-post-badge">' + $text.prop('outerHTML') + '</div>'
+    return '<div class="lffg-post-badge">' + $text.prop('outerHTML') + '</div>';
   }
 
   $(function() {
     $('.post').each(function() {
-      const $post = $(this)
-      const $user = $post.find('.postprofile-name a[href] > span[style]')
-      const color = $user.css('color')
+      const $post = $(this);
+      const $user = $post.find('.postprofile-name a[href] > span[style]');
+      const color = $user.css('color');
 
       if (!color) {
-        return
+        return;
       }
 
       $.each(
         $.map(colorMap, function(map) {
           map.color = $('<span>')
             .css('color', map.color)
-            .css('color')
+            .css('color');
 
-          return map
+          return map;
         }),
         // Big-O --> O(N^2)
         function(index, map) {
           if (map.color !== color) {
-            return
+            return;
           }
 
-          const yiq = getYiq(color)
-          $post.append(createEl(map.text, color, yiq))
+          const yiq = getYiq(color);
+          $post.append(createEl(map.text, color, yiq));
         }
-      )
-    })
+      );
+    });
 
-    $('<style>', { text: styles.join('') }).appendTo('head')
-  })
+    $('<style>', { text: styles.join('') }).appendTo('head');
+  });
 })(jQuery, [
   '.post {',
   '  position: relative;',
@@ -151,4 +151,4 @@
   '  border-left-color: transparent !important;',
   '  border-bottom-color: transparent !important;',
   '}'
-])
+]);

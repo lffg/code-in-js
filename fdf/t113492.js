@@ -7,14 +7,14 @@
  * @license MIT
  */
 
-;(function($, STORAGE_KEY, styles) {
+(function($, STORAGE_KEY, styles) {
   const imageList = [
     'https://i.imgur.com/YQ2Dqwn.png', // The first one is the default.
     'https://i.imgur.com/ueLBrgI.png',
     'https://i.imgur.com/aABT55Q.jpg',
     'https://i.imgur.com/qgAqH4e.jpg',
     'https://i.imgur.com/hgQzQJ0.png'
-  ]
+  ];
 
   /**
    * Generates a new jQuery object to select the images.
@@ -26,8 +26,8 @@
       return $('<div class="lffg-bgimage__choice">')
         .attr('data-image', image)
         .html($('<img />', { src: image }).prop('outerHTML'))
-        .prop('outerHTML')
-    })
+        .prop('outerHTML');
+    });
 
     return $(
       [
@@ -47,39 +47,39 @@
         '  </div>',
         '</div>'
       ].join('\n')
-    )
+    );
   }
 
   function handleToggle() {
-    const $target = $(this)
+    const $target = $(this);
 
-    $target.parents('.lffg-bgimage').toggleClass('lffg-bgimage--hidden')
+    $target.parents('.lffg-bgimage').toggleClass('lffg-bgimage--hidden');
   }
 
   function setBg() {
     if (!('localStorage' in window)) {
-      return false
+      return false;
     }
 
     const image = function() {
-      return localStorage.getItem(STORAGE_KEY)
-    }
+      return localStorage.getItem(STORAGE_KEY);
+    };
 
     if (!image()) {
       // Set the first one of the list as the default.
-      localStorage.setItem(STORAGE_KEY, imageList[0])
+      localStorage.setItem(STORAGE_KEY, imageList[0]);
     }
 
-    $('body').css('background-image', 'url(' + image() + ')')
-    return true
+    $('body').css('background-image', 'url(' + image() + ')');
+    return true;
   }
 
   function handleChange(event) {
-    const $target = $(this)
-    const image = $target.attr('data-image')
+    const $target = $(this);
+    const image = $target.attr('data-image');
 
-    localStorage.setItem(STORAGE_KEY, image)
-    setBg()
+    localStorage.setItem(STORAGE_KEY, image);
+    setBg();
   }
 
   $(function() {
@@ -87,25 +87,25 @@
     if (!setBg()) {
       return console.warn(
         '[LFFG Script] Your browser does not support the localStorage API.'
-      )
+      );
     }
 
     generateElement()
       .on('click', function(event) {
-        event.stopPropagation()
+        event.stopPropagation();
       })
       .on('click', '.lffg-bgimage__toggler', handleToggle)
       .on('click', '.lffg-bgimage__choice', handleChange)
-      .appendTo('body')
+      .appendTo('body');
 
     $(window).on('click', function() {
       if (!$('.lffg-bgimage').is('.lffg-bgimage--hidden')) {
-        $('.lffg-bgimage').addClass('lffg-bgimage--hidden')
+        $('.lffg-bgimage').addClass('lffg-bgimage--hidden');
       }
-    })
+    });
 
-    $('<style>', { text: styles.join('\n') }).appendTo('head')
-  })
+    $('<style>', { text: styles.join('\n') }).appendTo('head');
+  });
 })(jQuery, 'lffg-current-bgimage', [
   '.lffg-bgimage {',
   '  display: block;',
@@ -213,4 +213,4 @@
   '  width: 140px;',
   '  height: 140px;',
   '}'
-])
+]);
