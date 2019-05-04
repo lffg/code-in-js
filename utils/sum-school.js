@@ -1,3 +1,4 @@
+const HIGHLIGHT_CLASS = `lffg-is-highlighted-${Date.now().toString(16)}`
 const ACTIVE_CLASS = `lffg--is-active-${Date.now().toString(16)}`
 const TABLE_SELECTOR = 'table.EduGridMain'
 const ITEM_SELECTOR = 'table.EduGridMain td'
@@ -98,6 +99,17 @@ function createKeyboardListeners(type) {
 }
 
 //
+// Highlights "done" elements:
+//
+function highlightDone() {
+  const TARGET_REGEX = /3(0|5),0( \n)*?/
+
+  ;[...document.querySelectorAll(ITEM_SELECTOR)]
+    .filter((el) => TARGET_REGEX.test((el || {}).textContent))
+    .forEach((el) => el.classList.toggle(HIGHLIGHT_CLASS))
+}
+
+//
 // Creates the style sheet.
 //
 function createStylesheet() {
@@ -110,6 +122,10 @@ function createStylesheet() {
     '',
     `.${ACTIVE_CLASS} {`,
     '  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);',
+    '}',
+    '',
+    `.${HIGHLIGHT_CLASS} {`,
+    '  box-shadow: inset 0 0 5px #673ab7;',
     '}'
   ].join('\n')
 
@@ -118,6 +134,7 @@ function createStylesheet() {
 
 createTableListeners()
 createKeyboardListeners()
+highlightDone()
 createStylesheet()
 
 console.clear()
