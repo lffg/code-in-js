@@ -1,10 +1,10 @@
-const HIGHLIGHT_CLASS = `lffg-is-highlighted-${Date.now().toString(16)}`
+const HIGHLIGHT_CLASS = `lffg--is-highlighted-${Date.now().toString(16)}`
 const ACTIVE_CLASS = `lffg--is-active-${Date.now().toString(16)}`
 const TABLE_SELECTOR = 'table.EduGridMain'
 const ITEM_SELECTOR = 'table.EduGridMain td'
 
 //
-// De-normalize the given number.
+// De-normalizes the given number.
 //
 function denormalizeNumber(value, quotes = false) {
   const num = (typeof value === 'number' ? value.toString() : value).replace(
