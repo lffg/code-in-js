@@ -1,16 +1,11 @@
 {
   "extends": ["lffg"],
-  "settings": {
-    "react": {
-      "version": "latest"
-    }
-  },
   "rules": {
     "no-restricted-globals": "off",
     "no-unused-vars": "off"
   },
-  "globals": {
-    "jQuery": true
+  "env": {
+    "jquery": true
   },
   "overrides": [
     {
