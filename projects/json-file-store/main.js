@@ -1,5 +1,4 @@
 const path = require('path')
-
 const { setValue, getValue, edit } = require('./interact')
 
 const DB_PATH = path.join(__dirname, 'db')
