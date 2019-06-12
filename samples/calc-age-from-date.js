@@ -3,14 +3,16 @@
  */
 
 function getAge(birth) {
-  const current = new Date()
-  let diff = current.getFullYear() - birth.getFullYear()
+  const current = new Date();
+  let diff = current.getFullYear() - birth.getFullYear();
 
   if (
     new Date(current.getFullYear(), current.getMonth(), current.getDate()) <
     new Date(current.getFullYear(), birth.getMonth(), birth.getDate())
   )
-    diff--
+    diff--;
 
-  return diff
+  return diff;
 }
+
+console.log(getAge(new Date(2000, 10, 20)));

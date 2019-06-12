@@ -1,9 +1,9 @@
-const fs = require('fs')
-const path = require('path')
-const { promisify } = require('util')
+const fs = require('fs');
+const path = require('path');
+const { promisify } = require('util');
 
-const writeFile = promisify(fs.writeFile)
-const readFile = promisify(fs.readFile)
+const writeFile = promisify(fs.writeFile);
+const readFile = promisify(fs.readFile);
 
 /**
  * Check if the given type is absolute.
@@ -17,10 +17,10 @@ const readFile = promisify(fs.readFile)
  */
 function checkPath(p) {
   if (path.isAbsolute(p)) {
-    return true
+    return true;
   }
 
-  throw new Error(`The path "${p}" must be absolute.`)
+  throw new Error(`The path "${p}" must be absolute.`);
 }
 
 /**
@@ -36,10 +36,10 @@ function checkPath(p) {
  */
 function checkType(value, type) {
   if (typeof value === type) {
-    return true
+    return true;
   }
 
-  throw new TypeError('Invalid type.')
+  throw new TypeError('Invalid type.');
 }
 
 /**
@@ -53,10 +53,10 @@ function checkType(value, type) {
  * @public
  */
 async function setValue(p, value, options = 'utf8') {
-  checkPath(p)
-  checkType(value, 'string')
+  checkPath(p);
+  checkType(value, 'string');
 
-  await writeFile(p, value, options)
+  await writeFile(p, value, options);
 }
 
 /**
@@ -70,9 +70,9 @@ async function setValue(p, value, options = 'utf8') {
  * @public
  */
 async function getValue(p, prettyPrint = false, options = 'utf8') {
-  const contents = await readFile(p, options)
-  if (!prettyPrint) return contents
-  return JSON.stringify(JSON.parse(contents), null, 2)
+  const contents = await readFile(p, options);
+  if (!prettyPrint) return contents;
+  return JSON.stringify(JSON.parse(contents), null, 2);
 }
 
 /**
@@ -86,16 +86,16 @@ async function getValue(p, prettyPrint = false, options = 'utf8') {
  * @public
  */
 async function edit(p, callback, options = 'utf8') {
-  checkPath(p)
-  checkType(callback, 'function')
+  checkPath(p);
+  checkType(callback, 'function');
 
-  const oldValue = await getValue(p, false, options)
-  const newContents = await callback(oldValue)
-  await setValue(p, newContents, options)
+  const oldValue = await getValue(p, false, options);
+  const newContents = await callback(oldValue);
+  await setValue(p, newContents, options);
 }
 
 module.exports = {
   setValue,
   getValue,
   edit
-}
+};

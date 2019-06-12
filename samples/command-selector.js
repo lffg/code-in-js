@@ -19,10 +19,10 @@ const commands = [
     name: 'iddqd',
     description: 'Espelha-girando a tela em 180 graus.'
   }
-]
+];
 
 console.log(
   commands
     .map(({ name, description }) => `:${name} --> ${description}`)
     .join('\n')
-)
+);

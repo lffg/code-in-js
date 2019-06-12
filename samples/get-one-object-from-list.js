@@ -26,12 +26,12 @@ const example = [
     age: 600,
     gender: 'F'
   }
-]
+];
 
 function get(array) {
   return array
     .filter(({ gender }) => gender === 'F')
-    .sort(({ age: a }, { age: b }) => (a < b ? 1 : a > b ? -1 : 0))[0]
+    .sort(({ age: a }, { age: b }) => (a < b ? 1 : a > b ? -1 : 0))[0];
 }
 
-console.log(get(example))
+console.log(get(example));

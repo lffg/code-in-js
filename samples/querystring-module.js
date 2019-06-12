@@ -1,7 +1,7 @@
-const querystring = require('querystring')
+const querystring = require('querystring');
 
 function generateUrl(baseUrl, params) {
-  return `${baseUrl}?${querystring.stringify(params)}`
+  return `${baseUrl}?${querystring.stringify(params)}`;
 }
 
 console.log(
@@ -11,4 +11,4 @@ console.log(
     location: 'github',
     repository: 'code-in-js'
   })
-)
+);

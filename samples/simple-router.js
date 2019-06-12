@@ -1,9 +1,9 @@
 class Router {
-  _list = []
-  _groupName = null
+  _list = [];
+  _groupName = null;
 
   getList() {
-    return this._list
+    return this._list;
   }
 
   set(method, path) {
@@ -15,36 +15,36 @@ class Router {
       ]
         .filter(Boolean)
         .join(' ')
-    )
+    );
   }
 
   group(groupName, cb) {
-    const oldName = this._groupName
+    const oldName = this._groupName;
 
     if (typeof oldName === 'string') {
-      this._groupName = `${oldName} -> ${groupName}`
+      this._groupName = `${oldName} -> ${groupName}`;
     } else {
-      this._groupName = groupName
+      this._groupName = groupName;
     }
 
-    cb()
+    cb();
 
-    this._groupName = oldName
+    this._groupName = oldName;
   }
 }
 
-const Route = new Router()
+const Route = new Router();
 
-Route.set('GET', '/')
+Route.set('GET', '/');
 
 Route.group('User Routes', () => {
-  Route.set('GET', '/users')
-  Route.set('PUT', '/update-users')
+  Route.set('GET', '/users');
+  Route.set('PUT', '/update-users');
 
   Route.group('Profile Routes', () => {
-    Route.set('GET', '/users/:id')
-    Route.set('PUT', '/update-users/:id')
-  })
-})
+    Route.set('GET', '/users/:id');
+    Route.set('PUT', '/update-users/:id');
+  });
+});
 
-Route.set('GET', '/final')
+Route.set('GET', '/final');

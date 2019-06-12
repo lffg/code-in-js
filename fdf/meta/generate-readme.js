@@ -1,14 +1,14 @@
-const fs = require('fs')
-const path = require('path')
-const { promisify } = require('util')
+const fs = require('fs');
+const path = require('path');
+const { promisify } = require('util');
 
-const writeFile = promisify(fs.writeFile)
-const readFile = promisify(fs.readFile)
-const readdir = promisify(fs.readdir)
+const writeFile = promisify(fs.writeFile);
+const readFile = promisify(fs.readFile);
+const readdir = promisify(fs.readdir);
 
-const TARGET_DIR = path.join(__dirname, '..')
-const README = path.join(TARGET_DIR, 'README.md')
-const GH_LINK = 'https://github.com/lffg/code-in-js/blob/master/fdf'
+const TARGET_DIR = path.join(__dirname, '..');
+const README = path.join(TARGET_DIR, 'README.md');
+const GH_LINK = 'https://github.com/lffg/code-in-js/blob/master/fdf';
 
 /**
  * Get the label for a single script.
@@ -17,11 +17,11 @@ const GH_LINK = 'https://github.com/lffg/code-in-js/blob/master/fdf'
  * @return {Promise<string|boolean>}
  */
 async function getScriptLabel(file) {
-  const fileContents = await readFile(file, 'utf8')
-  const matches = fileContents.match(/(\/\*\*[\s\S]*?\*\/)/gi)
+  const fileContents = await readFile(file, 'utf8');
+  const matches = fileContents.match(/(\/\*\*[\s\S]*?\*\/)/gi);
 
   if (!matches || !matches[0]) {
-    return false
+    return false;
   }
 
   return matches[0]
@@ -30,7 +30,7 @@ async function getScriptLabel(file) {
     .filter((line) => /\S/.test(line) && !/^@\w+/.test(line))
     .map((line, index, list) => `${line}  `)
     .join('\n')
-    .trim()
+    .trim();
 }
 
 /**
@@ -46,7 +46,7 @@ async function getAllLabels(files) {
       ...file,
       label: await getScriptLabel(file.filePath)
     }))
-  )).filter(({ label }) => !!label)
+  )).filter(({ label }) => !!label);
 }
 
 /**
@@ -55,13 +55,13 @@ async function getAllLabels(files) {
  * @return {Promise<{ fileName: string, filePath: string }[]>}
  */
 async function getScripts() {
-  const contents = await readdir(TARGET_DIR)
+  const contents = await readdir(TARGET_DIR);
 
   const scripts = contents
     .filter((file) => path.extname(file) === '.js')
-    .map((file) => ({ fileName: file, filePath: path.join(TARGET_DIR, file) }))
+    .map((file) => ({ fileName: file, filePath: path.join(TARGET_DIR, file) }));
 
-  return scripts
+  return scripts;
 }
 
 /**
@@ -87,7 +87,7 @@ function generateContents(labels) {
       ].join('')
     ),
     '</table>'
-  ].join('\n')
+  ].join('\n');
 }
 
 /**
@@ -97,8 +97,8 @@ function generateContents(labels) {
  * @return {Promise<boolean>}
  */
 async function generateFile(contents) {
-  await writeFile(README, contents)
-  return true
+  await writeFile(README, contents);
+  return true;
 }
 
 /**
@@ -107,12 +107,12 @@ async function generateFile(contents) {
  * @return {Promise<void>}
  */
 async function main() {
-  const scripts = await getScripts()
-  const labels = await getAllLabels(scripts)
+  const scripts = await getScripts();
+  const labels = await getAllLabels(scripts);
 
-  await generateFile(generateContents(labels))
+  await generateFile(generateContents(labels));
 }
 
 main()
   .then(() => console.log('Done. Do not forget to commit the new README.'))
-  .catch((error) => console.error(error))
+  .catch((error) => console.error(error));
