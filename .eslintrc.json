@@ -1,9 +1,5 @@
 {
   "extends": ["lffg"],
-  "rules": {
-    "no-restricted-globals": "off",
-    "no-unused-vars": "off"
-  },
   "env": {
     "jquery": true
   },
@@ -11,16 +7,7 @@
     {
       "files": "fdf/*.js",
       "rules": {
-        "strict": ["error", "global"],
-        "prettier/prettier": [
-          "error",
-          {
-            "semi": true,
-            "arrowParens": "always",
-            "singleQuote": true,
-            "printWidth": 80
-          }
-        ]
+        "strict": ["error", "global"]
       }
     }
   ]
