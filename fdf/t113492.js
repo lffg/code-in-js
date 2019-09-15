@@ -74,7 +74,7 @@
     return true;
   }
 
-  function handleChange(event) {
+  function handleChange() {
     const $target = $(this);
     const image = $target.attr('data-image');
 

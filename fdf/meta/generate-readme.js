@@ -28,7 +28,7 @@ async function getScriptLabel(file) {
     .split('\n')
     .map((line) => line.replace(/^ ?(\/\*{2}|\*\/?)/gi, '').trim())
     .filter((line) => /\S/.test(line) && !/^@\w+/.test(line))
-    .map((line, index, list) => `${line}  `)
+    .map((line) => `${line}  `)
     .join('\n')
     .trim();
 }

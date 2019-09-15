@@ -5,8 +5,8 @@ const seconds = [
   .filter((el) => !!el)
   .map(({ textContent }) => textContent)
   .map((duration) => duration.trim())
-  .map((time) => time.split(':').map((t) => parseInt(t)))
-  .map((time) => time.map((t) => parseInt(t)))
+  .map((time) => time.split(':').map((t) => parseInt(t, 10)))
+  .map((time) => time.map((t) => parseInt(t, 10)))
   .map(([min, sec]) => min * 60 + sec)
   .reduce((a, c) => a + c, 0);
 

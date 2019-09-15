@@ -64,7 +64,7 @@ function clearActive() {
 //
 // Creates the keyboard event listeners.
 //
-function createKeyboardListeners(type) {
+function createKeyboardListeners() {
   window.addEventListener('keypress', (event) => {
     const key = event.key.toUpperCase();
 
