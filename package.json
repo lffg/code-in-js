@@ -6,11 +6,12 @@
   "author": "Luiz Felipe Gonçalves <https://luizfelipe.dev>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "yarn lint:raw .",
+    "lint:fix": "yarn lint:raw --fix .",
+    "lint:raw": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0"
   },
   "dependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-lffg": "1.5.0"
+    "eslint": "^6.4.0",
+    "eslint-config-lffg": "^9.0.0"
   }
 }
