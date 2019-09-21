@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "yarn lint:raw .",
     "lint:fix": "yarn lint:raw --fix .",
-    "lint:raw": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0"
+    "lint:raw": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "gen": "node fdf/meta/generate-readme.js"
   },
   "dependencies": {
     "eslint": "^6.4.0",

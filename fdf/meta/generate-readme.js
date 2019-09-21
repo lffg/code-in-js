@@ -1,3 +1,4 @@
+const { execSync: exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
@@ -102,17 +103,59 @@ async function generateFile(contents) {
 }
 
 /**
+ * Checks if the workspace is valid.
+ * Valid means that there is no staged files in the current branch.
+ *
+ * @return {boolean}
+ */
+function isValidWorkspace() {
+  const res = exec('git diff --cached --numstat | wc -l');
+  const num = parseInt(res.toString().trim(), 10);
+
+  return num === 0;
+}
+
+/**
+ * Commit the file.
+ *
+ * @return {void}
+ */
+function commit() {
+  exec(`git add ${README}`);
+
+  if (
+    exec('git diff --name-only --cached')
+      .toString()
+      .trim() !== 'fdf/README.md'
+  ) {
+    console.log('No changes.');
+    return;
+  }
+
+  exec('git commit -m "Regenerate README.md"');
+
+  console.log('Preparing to push...');
+  exec('git push -u origin master');
+  console.log('Pushed to GitHub.');
+}
+
+/**
  * Initial function. Initialize all the tasks.
  *
  * @return {Promise<void>}
  */
 async function main() {
+  if (!isValidWorkspace()) {
+    return console.error('Invalid workspace. There are staged files.');
+  }
+
   const scripts = await getScripts();
   const labels = await getAllLabels(scripts);
 
   await generateFile(generateContents(labels));
+  commit();
 }
 
 main()
-  .then(() => console.log('Done. Do not forget to commit the new README.'))
+  .then(() => console.log('Done.'))
   .catch((error) => console.error(error));
