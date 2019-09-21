@@ -4,6 +4,8 @@
 
 <table>
 <thead><tr><th>File</th><th>Description</th></tr></thead>
+<tr><td><a href="https://github.com/lffg/code-in-js/blob/master/fdf/list-html-pages.js"><code>list-html-pages.js</code></a></td><td>List all custom HTML pages of a Forumactif Forum.<br />
+This script may not work. It is currently unstable.</td></tr>
 <tr><td><a href="https://github.com/lffg/code-in-js/blob/master/fdf/t113295.js"><code>t113295.js</code></a></td><td>Create a refresh button on the latest topics.</td></tr>
 <tr><td><a href="https://github.com/lffg/code-in-js/blob/master/fdf/t113383.js"><code>t113383.js</code></a></td><td>Creates a post badge for each post.<br />
 (Only works in phpBB3 and ModernBB).</td></tr>
