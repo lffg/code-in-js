@@ -1,0 +1,15 @@
+name: Regenerate FDF Directory's README.md
+on: [push]
+
+jobs:
+  build:
+    name: Regenerate
+    runs-on: ubuntu-latest
+    steps:
+      # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
+      - name: Hello world
+        uses: actions/checkout@v1
+        uses: actions/setup-node@v1
+        id: regenerate-action
+      - name: Run Script
+        run: npm run gen
