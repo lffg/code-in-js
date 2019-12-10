@@ -9,7 +9,8 @@ jobs:
       # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
       - name: Hello world
         uses: actions/checkout@v1
-        uses: actions/setup-node@v1
         id: regenerate-action
+      - name: Setup Node
+        uses: actions/setup-node@v1
       - name: Run Script
         run: npm run gen
