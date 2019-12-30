@@ -6,9 +6,7 @@
 const getUrl = (i) => `http://railscasts.com/episodes/${i}`;
 
 (async () => {
-  console.log(1);
-
-  const urls = Array.from({ length: 417 })
+  const promisePages = Array.from({ length: 417 })
     .map((_, i) => i + 1)
     .map(getUrl)
     .map(async (url) => {
@@ -21,9 +19,7 @@ const getUrl = (i) => `http://railscasts.com/episodes/${i}`;
       return [doc, url];
     });
 
-  console.log(2);
-
-  const promises = await Promise.allSettled(urls);
+  const promises = await Promise.allSettled(promisePages);
 
   const pages = promises
     .filter((promise) => promise.status === 'fulfilled')
