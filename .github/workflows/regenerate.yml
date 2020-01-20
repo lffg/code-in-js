@@ -23,15 +23,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           
-      - run: ls fdf
-      - run: git status
-          
-          
       - name: Run Script
         run: yarn run gen
-        
-      - run: ls fdf
-      - run: git status
         
       - name: Commit Files
         run: |
