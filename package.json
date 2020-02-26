@@ -12,7 +12,7 @@
     "gen": "node fdf/meta/generate-readme.js"
   },
   "dependencies": {
-    "eslint": "^6.4.0",
-    "eslint-config-lffg": "^9.0.0"
+    "eslint": "^6.8.0",
+    "eslint-config-lffg": "^13.0.0"
   }
 }
