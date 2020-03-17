@@ -41,7 +41,7 @@ const getUrl = (i) => `http://railscasts.com/episodes/${i}`;
   [...document.body.children].forEach((node) => node.remove());
 
   const zone = Object.assign(document.createElement('textarea'), {
-    value: pages,
+    value: pages
   });
 
   Object.assign(zone.style, {

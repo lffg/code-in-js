@@ -42,12 +42,14 @@ async function getScriptLabel(file) {
  */
 async function getAllLabels(files) {
   // Clojure Lang? LOL!
-  return (await Promise.all(
-    files.map(async (file) => ({
-      ...file,
-      label: await getScriptLabel(file.filePath)
-    }))
-  )).filter(({ label }) => !!label);
+  return (
+    await Promise.all(
+      files.map(async (file) => ({
+        ...file,
+        label: await getScriptLabel(file.filePath)
+      }))
+    )
+  ).filter(({ label }) => !!label);
 }
 
 /**

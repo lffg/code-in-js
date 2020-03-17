@@ -7,7 +7,7 @@
     {
       "files": "fdf/*.js",
       "rules": {
-        "strict": ["error", "global"]
+        "strict": ["error", "function"]
       }
     }
   ]

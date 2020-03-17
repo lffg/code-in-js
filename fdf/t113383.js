@@ -8,6 +8,8 @@
  * @license MIT
  */
 
+/* eslint-disable no-param-reassign */
+
 (function($, styles) {
   const colorMap = [
     {

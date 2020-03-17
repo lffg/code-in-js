@@ -19,10 +19,10 @@ function denormalizeNumber(value, quotes = false) {
 // Normalizes the given number.
 //
 function normalizeNumber(value) {
-  value = value.trim();
+  const num = value.trim();
 
-  return /^[0-9.,]+$/.test(value || '')
-    ? parseFloat(value.replace(/\./g, '').replace(/,/, '.'))
+  return /^[0-9.,]+$/.test(num || '')
+    ? parseFloat(num.replace(/\./g, '').replace(/,/, '.'))
     : false;
 }
 
