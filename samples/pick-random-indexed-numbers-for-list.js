@@ -1,4 +1,4 @@
-function pickRandomNumbersForList(list, numbersForListItem = 1) {
+function pickRandomNumbersForList(numbersForListItem, list) {
   const itemsManagerMap = arrToMap(list, 0);
 
   const total = list.length * numbersForListItem;
