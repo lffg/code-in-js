@@ -2,35 +2,35 @@
 
 const example = [
   {
-    name: "Xii Jin Ping",
+    name: 'Xii Jin Ping',
     age: 6500,
-    gender: "M",
+    gender: 'M'
   },
   {
-    name: "Donald Trump",
+    name: 'Donald Trump',
     age: 1,
-    gender: "M",
+    gender: 'M'
   },
   {
-    name: "Theresa May",
+    name: 'Theresa May',
     age: 75,
-    gender: "F",
+    gender: 'F'
   },
   {
-    name: "Jair Bolsonaro",
+    name: 'Jair Bolsonaro',
     age: 67,
-    gender: "M",
+    gender: 'M'
   },
   {
-    name: "Angela Merkel",
+    name: 'Angela Merkel',
     age: 600,
-    gender: "F",
-  },
+    gender: 'F'
+  }
 ];
 
 function get(array) {
   return array
-    .filter(({ gender }) => gender === "F")
+    .filter(({ gender }) => gender === 'F')
     .sort(({ age: a }, { age: b }) => (a < b ? 1 : a > b ? -1 : 0))[0];
 }
 

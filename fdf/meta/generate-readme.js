@@ -1,15 +1,15 @@
-const { execSync: exec } = require("child_process");
-const fs = require("fs");
-const path = require("path");
-const { promisify } = require("util");
+const { execSync: exec } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const { promisify } = require('util');
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 const readdir = promisify(fs.readdir);
 
-const TARGET_DIR = path.join(__dirname, "..");
-const README = path.join(TARGET_DIR, "README.md");
-const GH_LINK = "https://github.com/lffg/code-in-js/blob/master/fdf";
+const TARGET_DIR = path.join(__dirname, '..');
+const README = path.join(TARGET_DIR, 'README.md');
+const GH_LINK = 'https://github.com/lffg/code-in-js/blob/master/fdf';
 
 /**
  * Get the label for a single script.
@@ -18,7 +18,7 @@ const GH_LINK = "https://github.com/lffg/code-in-js/blob/master/fdf";
  * @return {Promise<string|boolean>}
  */
 async function getScriptLabel(file) {
-  const fileContents = await readFile(file, "utf8");
+  const fileContents = await readFile(file, 'utf8');
   const matches = fileContents.match(/(\/\*\*[\s\S]*?\*\/)/gi);
 
   if (!matches || !matches[0]) {
@@ -26,11 +26,11 @@ async function getScriptLabel(file) {
   }
 
   return matches[0]
-    .split("\n")
-    .map((line) => line.replace(/^ ?(\/\*{2}|\*\/?)/gi, "").trim())
+    .split('\n')
+    .map((line) => line.replace(/^ ?(\/\*{2}|\*\/?)/gi, '').trim())
     .filter((line) => /\S/.test(line) && !/^@\w+/.test(line))
     .map((line) => `${line}  `)
-    .join("\n")
+    .join('\n')
     .trim();
 }
 
@@ -46,7 +46,7 @@ async function getAllLabels(files) {
     await Promise.all(
       files.map(async (file) => ({
         ...file,
-        label: await getScriptLabel(file.filePath),
+        label: await getScriptLabel(file.filePath)
       }))
     )
   ).filter(({ label }) => !!label);
@@ -61,7 +61,7 @@ async function getScripts() {
   const contents = await readdir(TARGET_DIR);
 
   const scripts = contents
-    .filter((file) => path.extname(file) === ".js")
+    .filter((file) => path.extname(file) === '.js')
     .map((file) => ({ fileName: file, filePath: path.join(TARGET_DIR, file) }));
 
   return scripts;
@@ -75,22 +75,22 @@ async function getScripts() {
  */
 function generateContents(labels) {
   return [
-    "<!-- THIS IS A GENERATED FILE. DO NOT EDIT IT DIRECTLY. -->",
-    "",
-    "# Scripts Index",
-    "",
-    "<table>",
-    "<thead><tr><th>File</th><th>Description</th></tr></thead>",
+    '<!-- THIS IS A GENERATED FILE. DO NOT EDIT IT DIRECTLY. -->',
+    '',
+    '# Scripts Index',
+    '',
+    '<table>',
+    '<thead><tr><th>File</th><th>Description</th></tr></thead>',
     ...labels.map(({ fileName, label }) =>
       [
-        "<tr>",
+        '<tr>',
         `<td><a href="${GH_LINK}/${fileName}"><code>${fileName}</code></a></td>`,
-        `<td>${label.replace(/ {2}/g, "<br />")}</td>`,
-        "</tr>",
-      ].join("")
+        `<td>${label.replace(/ {2}/g, '<br />')}</td>`,
+        '</tr>'
+      ].join('')
     ),
-    "</table>",
-  ].join("\n");
+    '</table>'
+  ].join('\n');
 }
 
 /**
@@ -111,7 +111,7 @@ async function generateFile(contents) {
  * @return {boolean}
  */
 function isValidWorkspace() {
-  const res = exec("git diff --cached --numstat | wc -l");
+  const res = exec('git diff --cached --numstat | wc -l');
   const num = parseInt(res.toString().trim(), 10);
 
   return num === 0;
@@ -126,21 +126,17 @@ function commit() {
   exec(`git add ${README}`);
 
   if (
-<<<<<<< HEAD
     exec('git diff --name-only --cached').toString().trim() !== 'fdf/README.md'
-=======
-    exec("git diff --name-only --cached").toString().trim() !== "fdf/README.md"
->>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
   ) {
-    console.log("No changes.");
+    console.log('No changes.');
     return;
   }
 
   exec('git commit -m "Regenerate README.md"');
 
-  console.log("Preparing to push...");
-  exec("git push -u origin master");
-  console.log("Pushed to GitHub.");
+  console.log('Preparing to push...');
+  exec('git push -u origin master');
+  console.log('Pushed to GitHub.');
 }
 
 /**
@@ -150,7 +146,7 @@ function commit() {
  */
 async function main() {
   if (!isValidWorkspace()) {
-    return console.error("Invalid workspace. There are staged files.");
+    return console.error('Invalid workspace. There are staged files.');
   }
 
   const scripts = await getScripts();
@@ -161,5 +157,5 @@ async function main() {
 }
 
 main()
-  .then(() => console.log("Done."))
+  .then(() => console.log('Done.'))
   .catch((error) => console.error(error));

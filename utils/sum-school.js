@@ -1,18 +1,18 @@
 const HIGHLIGHT_CLASS = `lffg--is-highlighted-${Date.now().toString(16)}`;
 const ACTIVE_CLASS = `lffg--is-active-${Date.now().toString(16)}`;
-const TABLE_SELECTOR = "table.EduGridMain";
-const ITEM_SELECTOR = "table.EduGridMain td";
+const TABLE_SELECTOR = 'table.EduGridMain';
+const ITEM_SELECTOR = 'table.EduGridMain td';
 
 //
 // De-normalizes the given number.
 //
 function denormalizeNumber(value, quotes = false) {
-  const num = (typeof value === "number" ? value.toString() : value).replace(
+  const num = (typeof value === 'number' ? value.toString() : value).replace(
     /\./g,
-    ","
+    ','
   );
 
-  return `${quotes ? '"' : ""}${num}${quotes ? '"' : ""}`;
+  return `${quotes ? '"' : ''}${num}${quotes ? '"' : ''}`;
 }
 
 //
@@ -21,8 +21,8 @@ function denormalizeNumber(value, quotes = false) {
 function normalizeNumber(value) {
   const num = value.trim();
 
-  return /^[0-9.,]+$/.test(num || "")
-    ? parseFloat(num.replace(/\./g, "").replace(/,/, "."))
+  return /^[0-9.,]+$/.test(num || '')
+    ? parseFloat(num.replace(/\./g, '').replace(/,/, '.'))
     : false;
 }
 
@@ -31,7 +31,7 @@ function normalizeNumber(value) {
 //
 function createTableListeners() {
   document.querySelectorAll(TABLE_SELECTOR).forEach((table) =>
-    table.addEventListener("click", (event) => {
+    table.addEventListener('click', (event) => {
       let target = event.target;
 
       while (!target.matches(ITEM_SELECTOR)) {
@@ -65,14 +65,14 @@ function clearActive() {
 // Creates the keyboard event listeners.
 //
 function createKeyboardListeners() {
-  window.addEventListener("keypress", (event) => {
+  window.addEventListener('keypress', (event) => {
     const key = event.key.toUpperCase();
 
-    if (key === "R") {
+    if (key === 'R') {
       clearActive();
     }
 
-    if (key === "C") {
+    if (key === 'C') {
       const nums = [...document.querySelectorAll(`.${ACTIVE_CLASS}`)]
         .map((el) => normalizeNumber((el || {}).textContent))
         .filter((n) => n !== false);
@@ -80,23 +80,19 @@ function createKeyboardListeners() {
       const sum = nums.reduce((a, c) => a + c, 0);
       const out = `A soma dos números ${nums
         .map((n) => denormalizeNumber(n, true))
-        .join(", ")} é ${denormalizeNumber(sum, true)}.`;
+        .join(', ')} é ${denormalizeNumber(sum, true)}.`;
 
       clearActive();
 
-      console.log("");
+      console.log('');
       console.log(out);
       void prompt(out, denormalizeNumber(sum));
-      console.log("");
-      console.log("-".repeat(40));
+      console.log('');
+      console.log('-'.repeat(40));
 
       // eslint-disable-next-line
       (typeof copy === "function" ? copy : (a) => false)(
-<<<<<<< HEAD
         sum.toString().replace(/\./, ',')
-=======
-        sum.toString().replace(/\./, ",")
->>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
       );
     }
   });
@@ -117,21 +113,21 @@ function highlightDone() {
 // Creates the style sheet.
 //
 function createStylesheet() {
-  const styleEl = document.createElement("style");
+  const styleEl = document.createElement('style');
 
   styleEl.textContent = [
-    ".EduGridMain tr:hover td {",
-    "  background-color: #e7e7e7;",
-    "}",
-    "",
+    '.EduGridMain tr:hover td {',
+    '  background-color: #e7e7e7;',
+    '}',
+    '',
     `.${ACTIVE_CLASS} {`,
-    "  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);",
-    "}",
-    "",
+    '  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);',
+    '}',
+    '',
     `.${HIGHLIGHT_CLASS} {`,
-    "  box-shadow: inset 0 0 5px #673ab7;",
-    "}",
-  ].join("\n");
+    '  box-shadow: inset 0 0 5px #673ab7;',
+    '}'
+  ].join('\n');
 
   document.head.appendChild(styleEl);
 }
@@ -143,7 +139,7 @@ createStylesheet();
 
 console.clear();
 
-console.log("-".repeat(40));
-console.log(" Pressione C para calcular. ");
-console.log(" Pressione R para resetar. ");
-console.log("-".repeat(40));
+console.log('-'.repeat(40));
+console.log(' Pressione C para calcular. ');
+console.log(' Pressione R para resetar. ');
+console.log('-'.repeat(40));

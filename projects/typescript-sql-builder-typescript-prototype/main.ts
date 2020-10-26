@@ -4,8 +4,8 @@
 // ---------------------
 
 const user = define({
-  name: "user",
-  columns: ["id", "username"],
+  name: 'user',
+  columns: ['id', 'username']
 });
 
 user.query().id;

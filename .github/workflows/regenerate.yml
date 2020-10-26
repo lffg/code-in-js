@@ -3,13 +3,8 @@ name: Regenerate FDF Directory's README.md
 on:
   push:
     paths:
-<<<<<<< HEAD
       - 'fdf/*'
       - '!fdf/README.md'
-=======
-      - "fdf/*"
-      - "!fdf/README.md"
->>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
 
 jobs:
   regenerate:

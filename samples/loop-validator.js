@@ -16,8 +16,8 @@ function getResponse({ getter, validator, onError, onSuccess }) {
 }
 
 getResponse({
-  getter: () => prompt("Digite um número menor ou igual a 5."),
+  getter: () => prompt('Digite um número menor ou igual a 5.'),
   validator: (resp) => parseInt(resp, 10) <= 5,
   onError: (resp) => alert(`O valor "${resp}" não é válido.`),
-  onSuccess: (resp) => alert(`Acertou! O número ${resp} é válido!`),
+  onSuccess: (resp) => alert(`Acertou! O número ${resp} é válido!`)
 });

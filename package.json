@@ -9,12 +9,7 @@
     "format:raw": "prettier --write --ignore-path .gitignore",
     "format": "yarn format:raw '**/*.{json,md,yml,yaml}' && yarn lint --fix",
     "lint": "yarn lint:raw .",
-<<<<<<< HEAD
     "lint:raw": "eslint --max-warnings=0 --ignore-path .gitignore --ignore-pattern '!.*.*'",
-=======
-    "lint:fix": "yarn lint:raw --fix .",
-    "lint:raw": "eslint --max-warnings=0",
->>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
     "gen": "node fdf/meta/generate-readme.js"
   },
   "dependencies": {},
@@ -24,7 +19,6 @@
     "eslint-config-lffg": "^20.0.0",
     "prettier": "^2.1.2",
     "typescript": "^4.0.3"
-<<<<<<< HEAD
   },
   "eslintConfig": {
     "extends": [
@@ -49,7 +43,4 @@
     ]
   },
   "prettier": "eslint-config-lffg/prettier"
-=======
-  }
->>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
 }

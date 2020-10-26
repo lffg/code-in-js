@@ -1,8 +1,8 @@
 /*global BigInt*/
 
 function fat(n, pretty = false, locale) {
-  if (typeof n !== "number" || n >= Number.MAX_SAFE_INTEGER) {
-    throw new RangeError("Invalid number");
+  if (typeof n !== 'number' || n >= Number.MAX_SAFE_INTEGER) {
+    throw new RangeError('Invalid number');
   }
 
   if (n <= 1) {
@@ -17,7 +17,7 @@ function fat(n, pretty = false, locale) {
     currentNumber = currentNumber - 1n;
   }
 
-  if (pretty && typeof BigInt.toLocaleString === "function") {
+  if (pretty && typeof BigInt.toLocaleString === 'function') {
     return currentTotal.toLocaleString(locale);
   }
 
