@@ -8,12 +8,15 @@
 
 /* eslint no-sequences: 0 */
 /* eslint no-unused-vars: 2 */
+/* eslint strict: [2, "safe"] */
 /* eslint no-restricted-globals: 0 */
 
-const pageUrl = `${location.protocol}//${location.host}`.replace(/\/*$/, '');
+"use strict";
+
+const pageUrl = `${location.protocol}//${location.host}`.replace(/\/*$/, "");
 
 async function getHTML(uri) {
-  const response = await fetch(uri, { redirect: 'manual' });
+  const response = await fetch(uri, { redirect: "manual" });
   return response.text();
 }
 
@@ -23,10 +26,10 @@ function getTitle(pageContents, uri) {
   }
 
   const parser = new DOMParser();
-  const document = parser.parseFromString(pageContents, 'text/html');
+  const document = parser.parseFromString(pageContents, "text/html");
 
-  const title = (document.querySelector('title') || {}).textContent;
-  return `${uri}: ${title || 'No title.'}`;
+  const title = (document.querySelector("title") || {}).textContent;
+  return `${uri}: ${title || "No title."}`;
 }
 
 async function fetchPages(from = 0, add = 1) {
@@ -40,10 +43,10 @@ async function fetchPages(from = 0, add = 1) {
   const done = await Promise.allSettled(promises);
 
   return done.map(({ status, value: [html, uri] }) =>
-    getTitle(status === 'fulfilled' ? html : null, uri)
+    getTitle(status === "fulfilled" ? html : null, uri)
   );
 }
 
 fetchPages(1, 50).then(
-  (array) => (console.log('Done:'), console.log(array.join('\n')))
+  (array) => (console.log("Done:"), console.log(array.join("\n")))
 );

@@ -7,55 +7,54 @@
  * @license MIT
  */
 
-(function($, styles) {
-  const IMAGE_SOURCE = 'https://i.imgur.com/aTCsNba.png';
-  const CONTENT_SELECTOR = '#comments_scroll_div';
+(function ($, styles) {
+  "use strict";
+
+  const IMAGE_SOURCE = "https://i.imgur.com/aTCsNba.png";
+  const CONTENT_SELECTOR = "#comments_scroll_div";
 
   function refreshContent() {
     const $self = $(this);
 
     // Prevent multiple clicks:
-    if ($self.is('.in-use')) {
+    if ($self.is(".in-use")) {
       return;
     }
 
-    $self.addClass('in-use');
+    $self.addClass("in-use");
 
-    $.get(window.location.pathname, function(response) {
+    $.get(window.location.pathname, function (response) {
       $(CONTENT_SELECTOR).html($(CONTENT_SELECTOR, response).html());
-      $self.removeClass('in-use');
+      $self.removeClass("in-use");
     });
   }
 
-  $(function() {
-    const $trigger = $('<img />', {
-      src: IMAGE_SOURCE || 'https://i.imgur.com/aTCsNba.png'
+  $(function () {
+    const $trigger = $("<img />", {
+      src: IMAGE_SOURCE || "https://i.imgur.com/aTCsNba.png",
     })
-      .addClass('lf-refresh-trigger')
-      .on('click', refreshContent);
+      .addClass("lf-refresh-trigger")
+      .on("click", refreshContent);
 
-    $(CONTENT_SELECTOR)
-      .parents('.module')
-      .find('.h3')
-      .append($trigger);
+    $(CONTENT_SELECTOR).parents(".module").find(".h3").append($trigger);
 
-    $('head').append($('<style>', { text: styles.join('\n') }));
+    $("head").append($("<style>", { text: styles.join("\n") }));
   });
 })(jQuery, [
-  '.h3 {',
-  '  position: relative;',
-  '}',
-  '',
-  '.lf-refresh-trigger {',
-  '  cursor: pointer;',
-  '  position: absolute;',
-  '  top: 50%;',
-  '  right: 10px;',
-  '  transform: translateY(-50%);',
-  '}',
-  '',
-  '.lf-refresh-trigger.in-use {',
-  '  cursor: not-allowed;',
-  '  opacity: .7;',
-  '}'
+  ".h3 {",
+  "  position: relative;",
+  "}",
+  "",
+  ".lf-refresh-trigger {",
+  "  cursor: pointer;",
+  "  position: absolute;",
+  "  top: 50%;",
+  "  right: 10px;",
+  "  transform: translateY(-50%);",
+  "}",
+  "",
+  ".lf-refresh-trigger.in-use {",
+  "  cursor: not-allowed;",
+  "  opacity: .7;",
+  "}",
 ]);

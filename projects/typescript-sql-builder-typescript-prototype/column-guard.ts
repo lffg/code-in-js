@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable no-unused-expressions */
 
 // Goal:
@@ -7,17 +6,17 @@
 const idColumn: Column = {} as any;
 const usernameColumn: Column = {} as any;
 
-concat(idColumn, '-', usernameColumn);
+concat(idColumn, "-", usernameColumn);
 
-// @ts-ignore
-concat(() => {}, '-', idColumn);
+// @ts-expect-error here
+concat(() => {}, "-", idColumn);
 
 // API:
 // ---------------------
 
-const TYPE__COLUMN = Symbol('TYPE__COLUMN');
+const TYPE__COLUMN = Symbol("TYPE__COLUMN");
 
-type ColumnFunction = () => {};
+type ColumnFunction = () => Record<string, unknown>;
 type Column = ColumnFunction & {
   $$type: typeof TYPE__COLUMN;
 };

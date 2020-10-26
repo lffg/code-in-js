@@ -1,21 +1,20 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable no-unused-expressions */
 
 // Goal:
 // ---------------------
 
 const user = define({
-  name: 'user',
-  columns: ['id', 'username']
+  name: "user",
+  columns: ["id", "username"],
 });
 
 user.query().id;
 user.query().username;
 user.tableName;
 
-// @ts-ignore
+// @ts-expect-error Property 'unknown' does not exist
 user.query().unknown; // Error 😃
-// @ts-ignore
+// @ts-expect-error Property 'unknown' does not exist
 user.unknown; // Error 😃
 
 // API:
