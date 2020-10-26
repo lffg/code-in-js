@@ -11,17 +11,21 @@
 /* eslint-disable no-param-reassign */
 
 (function ($, styles) {
+<<<<<<< HEAD
   'use strict';
+=======
+  "use strict";
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
 
   const colorMap = [
     {
-      color: '#ff0000',
-      text: 'Admin' // <-- HTML is not allowed here.
+      color: "#ff0000",
+      text: "Admin", // <-- HTML is not allowed here.
     },
     {
-      color: '#000000',
-      text: 'Staff'
-    }
+      color: "#000000",
+      text: "Staff",
+    },
     // Kepp adding more objects.
   ];
 
@@ -33,11 +37,11 @@
    */
   function getYiq(colorHex) {
     if (!/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(colorHex)) {
-      return '#fff';
+      return "#fff";
     }
 
     if (colorHex.length === 4) {
-      colorHex = colorHex.replace(/^#(.)(.)(.)/i, '#$1$1$2$2$3$3');
+      colorHex = colorHex.replace(/^#(.)(.)(.)/i, "#$1$1$2$2$3$3");
     }
 
     const r = parseInt(colorHex.substr(1, 2), 16);
@@ -45,7 +49,7 @@
     const b = parseInt(colorHex.substr(5, 2), 16);
 
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-    return yiq >= 128 ? '#000' : '#fff';
+    return yiq >= 128 ? "#000" : "#fff";
   }
 
   /**
@@ -62,25 +66,29 @@
      * @return {object}
      */
     function $pseudo(className) {
-      return $('<span>')
+      return $("<span>")
         .css({ borderColor: color })
-        .addClass('lffg-post-badge__' + className);
+        .addClass("lffg-post-badge__" + className);
     }
 
     const $text = $('<span class="lffg-post-badge__text">')
       .css({ backgroundColor: color, color: yiq })
       .text(text) // <-- Prevent self-XSS.
-      .prepend($pseudo('before'))
-      .append($pseudo('after'));
+      .prepend($pseudo("before"))
+      .append($pseudo("after"));
 
-    return '<div class="lffg-post-badge">' + $text.prop('outerHTML') + '</div>';
+    return '<div class="lffg-post-badge">' + $text.prop("outerHTML") + "</div>";
   }
 
   $(function () {
+<<<<<<< HEAD
     $('.post').each(function () {
+=======
+    $(".post").each(function () {
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
       const $post = $(this);
-      const $user = $post.find('.postprofile-name a[href] > span[style]');
-      const color = $user.css('color');
+      const $user = $post.find(".postprofile-name a[href] > span[style]");
+      const color = $user.css("color");
 
       if (!color) {
         return;
@@ -88,7 +96,11 @@
 
       $.each(
         $.map(colorMap, function (map) {
+<<<<<<< HEAD
           map.color = $('<span>').css('color', map.color).css('color');
+=======
+          map.color = $("<span>").css("color", map.color).css("color");
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
 
           return map;
         }),
@@ -104,53 +116,53 @@
       );
     });
 
-    $('<style>', { text: styles.join('') }).appendTo('head');
+    $("<style>", { text: styles.join("") }).appendTo("head");
   });
 })(jQuery, [
-  '.post {',
-  '  position: relative;',
-  '  z-index: 10;',
-  '}',
-  '',
-  '.lffg-post-badge {',
-  '  position: absolute;',
-  '  right: -5px;',
-  '  top: -5px;',
-  '  z-index: 1;',
-  '  overflow: hidden;',
-  '  width: 75px;',
-  '  height: 75px;',
-  '  text-align: right;',
-  '}',
-  '',
-  '.lffg-post-badge__text {',
-  '  background-color: #000;',
-  '  display: block;',
-  '  width: 100px;',
-  '  text-align: center;',
-  '  position: absolute;',
-  '  top: 19px;',
-  '  right: -21px;',
-  '  transform: rotate(45deg);',
-  '}',
-  '',
-  '.lffg-post-badge__before,',
-  '.lffg-post-badge__after {',
-  '  position: absolute;',
-  '  top: 100%;',
-  '  z-index: -1;',
-  '  border: 3px solid #000;',
-  '}',
-  '',
-  '.lffg-post-badge__before {',
-  '  left: 0;',
-  '  border-right-color: transparent !important;',
-  '  border-bottom-color: transparent !important;',
-  '}',
-  '',
-  '.lffg-post-badge__after {',
-  '  right: 0;',
-  '  border-left-color: transparent !important;',
-  '  border-bottom-color: transparent !important;',
-  '}'
+  ".post {",
+  "  position: relative;",
+  "  z-index: 10;",
+  "}",
+  "",
+  ".lffg-post-badge {",
+  "  position: absolute;",
+  "  right: -5px;",
+  "  top: -5px;",
+  "  z-index: 1;",
+  "  overflow: hidden;",
+  "  width: 75px;",
+  "  height: 75px;",
+  "  text-align: right;",
+  "}",
+  "",
+  ".lffg-post-badge__text {",
+  "  background-color: #000;",
+  "  display: block;",
+  "  width: 100px;",
+  "  text-align: center;",
+  "  position: absolute;",
+  "  top: 19px;",
+  "  right: -21px;",
+  "  transform: rotate(45deg);",
+  "}",
+  "",
+  ".lffg-post-badge__before,",
+  ".lffg-post-badge__after {",
+  "  position: absolute;",
+  "  top: 100%;",
+  "  z-index: -1;",
+  "  border: 3px solid #000;",
+  "}",
+  "",
+  ".lffg-post-badge__before {",
+  "  left: 0;",
+  "  border-right-color: transparent !important;",
+  "  border-bottom-color: transparent !important;",
+  "}",
+  "",
+  ".lffg-post-badge__after {",
+  "  right: 0;",
+  "  border-left-color: transparent !important;",
+  "  border-bottom-color: transparent !important;",
+  "}",
 ]);

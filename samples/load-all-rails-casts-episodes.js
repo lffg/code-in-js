@@ -15,20 +15,20 @@ const getUrl = (i) => `http://railscasts.com/episodes/${i}`;
       console.log(`Loaded ${url}`);
 
       const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+      const doc = parser.parseFromString(html, "text/html");
       return [doc, url];
     });
 
   const promises = await Promise.allSettled(promisePages);
 
   const pages = promises
-    .filter((promise) => promise.status === 'fulfilled')
+    .filter((promise) => promise.status === "fulfilled")
     .map(({ value: [doc, url] }) => [
-      (doc.querySelector('title') || {}).textContent || 'Não definido.',
-      url
+      (doc.querySelector("title") || {}).textContent || "Não definido.",
+      url,
     ])
     .map(([title, url]) => `- [${title}](${url})`)
-    .join('\n');
+    .join("\n");
 
   const diff = promises.length - pages.length;
   if (!diff) {
@@ -40,17 +40,17 @@ const getUrl = (i) => `http://railscasts.com/episodes/${i}`;
   // Sorry, page. :/
   [...document.body.children].forEach((node) => node.remove());
 
-  const zone = Object.assign(document.createElement('textarea'), {
-    value: pages
+  const zone = Object.assign(document.createElement("textarea"), {
+    value: pages,
   });
 
   Object.assign(zone.style, {
-    border: 'solid 3px #000',
-    backgroundColor: '#222',
-    color: '#fff',
-    fontFamily: 'SF Mono, Fira Code, monospace',
-    fontSize: '18px',
-    lineHeight: '1.7'
+    border: "solid 3px #000",
+    backgroundColor: "#222",
+    color: "#fff",
+    fontFamily: "SF Mono, Fira Code, monospace",
+    fontSize: "18px",
+    lineHeight: "1.7",
   });
 
   document.body.appendChild(zone);

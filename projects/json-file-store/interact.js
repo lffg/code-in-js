@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const { promisify } = require('util');
+const fs = require("fs");
+const path = require("path");
+const { promisify } = require("util");
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
@@ -39,7 +39,7 @@ function checkType(value, type) {
     return true;
   }
 
-  throw new TypeError('Invalid type.');
+  throw new TypeError("Invalid type.");
 }
 
 /**
@@ -52,9 +52,9 @@ function checkType(value, type) {
  *
  * @public
  */
-async function setValue(p, value, options = 'utf8') {
+async function setValue(p, value, options = "utf8") {
   checkPath(p);
-  checkType(value, 'string');
+  checkType(value, "string");
 
   await writeFile(p, value, options);
 }
@@ -69,7 +69,7 @@ async function setValue(p, value, options = 'utf8') {
  *
  * @public
  */
-async function getValue(p, prettyPrint = false, options = 'utf8') {
+async function getValue(p, prettyPrint = false, options = "utf8") {
   const contents = await readFile(p, options);
   if (!prettyPrint) return contents;
   return JSON.stringify(JSON.parse(contents), null, 2);
@@ -85,9 +85,9 @@ async function getValue(p, prettyPrint = false, options = 'utf8') {
  *
  * @public
  */
-async function edit(p, callback, options = 'utf8') {
+async function edit(p, callback, options = "utf8") {
   checkPath(p);
-  checkType(callback, 'function');
+  checkType(callback, "function");
 
   const oldValue = await getValue(p, false, options);
   const newContents = await callback(oldValue);
@@ -97,5 +97,5 @@ async function edit(p, callback, options = 'utf8') {
 module.exports = {
   setValue,
   getValue,
-  edit
+  edit,
 };

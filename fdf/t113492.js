@@ -7,14 +7,18 @@
  * @license MIT
  */
 (function ($, STORAGE_KEY, styles) {
+<<<<<<< HEAD
   'use strict';
+=======
+  "use strict";
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
 
   const imageList = [
-    'https://i.imgur.com/YQ2Dqwn.png', // The first one is the default.
-    'https://i.imgur.com/ueLBrgI.png',
-    'https://i.imgur.com/aABT55Q.jpg',
-    'https://i.imgur.com/qgAqH4e.jpg',
-    'https://i.imgur.com/hgQzQJ0.png'
+    "https://i.imgur.com/YQ2Dqwn.png", // The first one is the default.
+    "https://i.imgur.com/ueLBrgI.png",
+    "https://i.imgur.com/aABT55Q.jpg",
+    "https://i.imgur.com/qgAqH4e.jpg",
+    "https://i.imgur.com/hgQzQJ0.png",
   ];
 
   /**
@@ -25,9 +29,9 @@
   function generateElement() {
     const choicesList = $.map(imageList, function (image) {
       return $('<div class="lffg-bgimage__choice">')
-        .attr('data-image', image)
-        .html($('<img />', { src: image }).prop('outerHTML'))
-        .prop('outerHTML');
+        .attr("data-image", image)
+        .html($("<img />", { src: image }).prop("outerHTML"))
+        .prop("outerHTML");
     });
 
     return $(
@@ -35,30 +39,30 @@
         '<div class="lffg-bgimage lffg-bgimage--hidden">',
         '  <a class="lffg-bgimage__toggler" title="Mudar a imagem de fundo">',
         '    <span><i class="fa fa-paint-brush"></i></span>',
-        '  </a>',
+        "  </a>",
         '  <div class="lffg-bgimage__inner">',
         '    <header class="lffg-bgimage__header">',
-        '      <span>Selecionar Imagem de Fundo</span>',
-        '    </header>',
+        "      <span>Selecionar Imagem de Fundo</span>",
+        "    </header>",
         '    <div class="lffg-bgimage__picker-wrapper">',
         '      <div class="lffg-bgimage__picker">',
-        '        ' + choicesList.join('\n'),
-        '      </div>',
-        '    </div>',
-        '  </div>',
-        '</div>'
-      ].join('\n')
+        "        " + choicesList.join("\n"),
+        "      </div>",
+        "    </div>",
+        "  </div>",
+        "</div>",
+      ].join("\n")
     );
   }
 
   function handleToggle() {
     const $target = $(this);
 
-    $target.parents('.lffg-bgimage').toggleClass('lffg-bgimage--hidden');
+    $target.parents(".lffg-bgimage").toggleClass("lffg-bgimage--hidden");
   }
 
   function setBg() {
-    if (!('localStorage' in window)) {
+    if (!("localStorage" in window)) {
       return false;
     }
 
@@ -71,13 +75,13 @@
       localStorage.setItem(STORAGE_KEY, imageList[0]);
     }
 
-    $('body').css('background-image', 'url(' + image() + ')');
+    $("body").css("background-image", "url(" + image() + ")");
     return true;
   }
 
   function handleChange() {
     const $target = $(this);
-    const image = $target.attr('data-image');
+    const image = $target.attr("data-image");
 
     localStorage.setItem(STORAGE_KEY, image);
     setBg();
@@ -87,131 +91,141 @@
     // Execute once and stop the script if the API is not supported.
     if (!setBg()) {
       return console.warn(
-        '[LFFG Script] Your browser does not support the localStorage API.'
+        "[LFFG Script] Your browser does not support the localStorage API."
       );
     }
 
     generateElement()
+<<<<<<< HEAD
       .on('click', function (event) {
+=======
+      .on("click", function (event) {
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
         event.stopPropagation();
       })
-      .on('click', '.lffg-bgimage__toggler', handleToggle)
-      .on('click', '.lffg-bgimage__choice', handleChange)
-      .appendTo('body');
+      .on("click", ".lffg-bgimage__toggler", handleToggle)
+      .on("click", ".lffg-bgimage__choice", handleChange)
+      .appendTo("body");
 
+<<<<<<< HEAD
     $(window).on('click', function () {
       if (!$('.lffg-bgimage').is('.lffg-bgimage--hidden')) {
         $('.lffg-bgimage').addClass('lffg-bgimage--hidden');
+=======
+    $(window).on("click", function () {
+      if (!$(".lffg-bgimage").is(".lffg-bgimage--hidden")) {
+        $(".lffg-bgimage").addClass("lffg-bgimage--hidden");
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
       }
     });
 
-    $('<style>', { text: styles.join('\n') }).appendTo('head');
+    $("<style>", { text: styles.join("\n") }).appendTo("head");
   });
-})(jQuery, 'lffg-current-bgimage', [
-  '.lffg-bgimage {',
-  '  display: block;',
-  '  border: solid 1px #ddd;',
-  '  border-left: 0;',
-  '  position: fixed;',
-  '  top: 10vh;',
-  '  left: 0;',
-  '  background-color: #fff;',
-  '  box-shadow: 4px 4px rgba(0, 0, 0, 0.39);',
-  '  z-index: 9999;',
-  '  transition: all ease-in-out 300ms;',
-  '}',
-  '',
-  '.lffg-bgimage.lffg-bgimage--hidden {',
-  '  transform: translateX(calc(-100% - 25px));',
-  '}',
-  '',
-  '.lffg-bgimage__toggler {',
-  '  display: flex;',
-  '  justify-content: center;',
-  '  align-items: center;',
-  '  width: 45px;',
-  '  height: 45px;',
-  '  position: absolute;',
-  '  border: solid 1px #ddd;',
-  '  left: calc(100% + 1px + 1.5rem);',
-  '  background-color: #fff;',
-  '  font-size: 23px;',
-  '  color: #39c !important;',
-  '  box-shadow: 4px 4px rgba(0, 0, 0, 0.39);',
-  '  transition: all linear 95ms;',
-  '  cursor: pointer;',
-  '}',
-  '',
-  '.lffg-bgimage__toggler::before {',
+})(jQuery, "lffg-current-bgimage", [
+  ".lffg-bgimage {",
+  "  display: block;",
+  "  border: solid 1px #ddd;",
+  "  border-left: 0;",
+  "  position: fixed;",
+  "  top: 10vh;",
+  "  left: 0;",
+  "  background-color: #fff;",
+  "  box-shadow: 4px 4px rgba(0, 0, 0, 0.39);",
+  "  z-index: 9999;",
+  "  transition: all ease-in-out 300ms;",
+  "}",
+  "",
+  ".lffg-bgimage.lffg-bgimage--hidden {",
+  "  transform: translateX(calc(-100% - 25px));",
+  "}",
+  "",
+  ".lffg-bgimage__toggler {",
+  "  display: flex;",
+  "  justify-content: center;",
+  "  align-items: center;",
+  "  width: 45px;",
+  "  height: 45px;",
+  "  position: absolute;",
+  "  border: solid 1px #ddd;",
+  "  left: calc(100% + 1px + 1.5rem);",
+  "  background-color: #fff;",
+  "  font-size: 23px;",
+  "  color: #39c !important;",
+  "  box-shadow: 4px 4px rgba(0, 0, 0, 0.39);",
+  "  transition: all linear 95ms;",
+  "  cursor: pointer;",
+  "}",
+  "",
+  ".lffg-bgimage__toggler::before {",
   '  content: "";',
-  '  width: 15px;',
-  '  height: 15px;',
-  '  border: solid 1px transparent;',
-  '  border-top-color: #ddd;',
-  '  border-left-color: #ddd;',
-  '  background-color: #fff;',
-  '  transform: rotate(-45deg);',
-  '  position: absolute;',
-  '  left: -8px;',
-  '  z-index: 2;',
-  '  transition: all linear 95ms;',
-  '}',
-  '',
-  '.lffg-bgimage__toggler:hover,',
-  '.lffg-bgimage__toggler:hover::before {',
-  '  color: #fff !important;',
-  '  background-color: #39c;',
-  '}',
-  '',
-  '.lffg-bgimage__toggler span {',
-  '  position: relative;',
-  '  z-index: 2;',
-  '}',
-  '',
-  '.lffg-bgimage__header {',
-  '  padding: 1rem;',
-  '  border-bottom: solid 1px #ddd;',
-  '  background-color: #39c;',
-  '  color: #fff;',
+  "  width: 15px;",
+  "  height: 15px;",
+  "  border: solid 1px transparent;",
+  "  border-top-color: #ddd;",
+  "  border-left-color: #ddd;",
+  "  background-color: #fff;",
+  "  transform: rotate(-45deg);",
+  "  position: absolute;",
+  "  left: -8px;",
+  "  z-index: 2;",
+  "  transition: all linear 95ms;",
+  "}",
+  "",
+  ".lffg-bgimage__toggler:hover,",
+  ".lffg-bgimage__toggler:hover::before {",
+  "  color: #fff !important;",
+  "  background-color: #39c;",
+  "}",
+  "",
+  ".lffg-bgimage__toggler span {",
+  "  position: relative;",
+  "  z-index: 2;",
+  "}",
+  "",
+  ".lffg-bgimage__header {",
+  "  padding: 1rem;",
+  "  border-bottom: solid 1px #ddd;",
+  "  background-color: #39c;",
+  "  color: #fff;",
   '  font-family: "Trebuchet MS", sans-serif;',
-  '  font-size: 1.15rem;',
-  '  text-transform: uppercase;',
-  '}',
-  '',
-  '.lffg-bgimage__picker-wrapper {',
-  '  max-height: 300px;',
-  '  overflow-y: scroll;',
-  '}',
-  '',
-  '.lffg-bgimage__picker {',
-  '  display: flex;',
-  '  justify-content: center;',
-  '  align-items: center;',
-  '  flex-direction: column;',
-  '}',
-  '',
-  '.lffg-bgimage__choice {',
-  '  display: block;',
-  '  width: 120px;',
-  '  height: 120px;',
-  '  margin-bottom: 1rem;',
-  '  border: solid 1px #ddd;',
-  '  border-radius: 500px;',
-  '  overflow: hidden;',
-  '  cursor: pointer;',
-  '  transition: all linear 100ms;',
-  '}',
-  '',
-  '.lffg-bgimage__choice:hover {',
-  '  box-shadow: 0 0 0 5px #39c;',
-  '}',
-  '',
-  '.lffg-bgimage__choice:first-child {',
-  '  margin-top: 1rem;',
-  '}',
-  '',
-  '.lffg-bgimage__choice img {',
-  '  width: 140px;',
-  '  height: 140px;',
-  '}'
+  "  font-size: 1.15rem;",
+  "  text-transform: uppercase;",
+  "}",
+  "",
+  ".lffg-bgimage__picker-wrapper {",
+  "  max-height: 300px;",
+  "  overflow-y: scroll;",
+  "}",
+  "",
+  ".lffg-bgimage__picker {",
+  "  display: flex;",
+  "  justify-content: center;",
+  "  align-items: center;",
+  "  flex-direction: column;",
+  "}",
+  "",
+  ".lffg-bgimage__choice {",
+  "  display: block;",
+  "  width: 120px;",
+  "  height: 120px;",
+  "  margin-bottom: 1rem;",
+  "  border: solid 1px #ddd;",
+  "  border-radius: 500px;",
+  "  overflow: hidden;",
+  "  cursor: pointer;",
+  "  transition: all linear 100ms;",
+  "}",
+  "",
+  ".lffg-bgimage__choice:hover {",
+  "  box-shadow: 0 0 0 5px #39c;",
+  "}",
+  "",
+  ".lffg-bgimage__choice:first-child {",
+  "  margin-top: 1rem;",
+  "}",
+  "",
+  ".lffg-bgimage__choice img {",
+  "  width: 140px;",
+  "  height: 140px;",
+  "}",
 ]);

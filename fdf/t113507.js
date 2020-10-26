@@ -9,6 +9,7 @@
  */
 
 (function ($) {
+<<<<<<< HEAD
   'use strict';
 
   $(function () {
@@ -16,6 +17,15 @@
       event.preventDefault();
 
       $('html, body').stop().animate({ scrollTop: 0 }, 'slow');
+=======
+  "use strict";
+
+  $(function () {
+    $('a[href="#top"]').on("click", function (event) {
+      event.preventDefault();
+
+      $("html, body").stop().animate({ scrollTop: 0 }, "slow");
+>>>>>>> 54d379986f0e26ccfdd83318a8300b4defa07008
     });
   });
 })(jQuery);

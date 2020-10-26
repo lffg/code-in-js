@@ -1,0 +1,17 @@
+{
+  "extends": ["lffg"],
+  "env": {
+    "jquery": true
+  },
+  "overrides": [
+    {
+      "parserOptions": {
+        "sourceType": "script"
+      },
+      "files": "fdf/*.js",
+      "rules": {
+        "strict": ["error", "function"]
+      }
+    }
+  ]
+}

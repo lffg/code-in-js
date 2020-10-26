@@ -10,13 +10,13 @@ const onMessage = (function () {
   // Esse array é privado a este escopo:
   const actionHandlers = [
     {
-      message: 'Luiz',
-      handler: () => 'Você disse LUIZ!'
+      message: "Luiz",
+      handler: () => "Você disse LUIZ!",
     },
     {
-      message: 'Goufix',
-      handler: () => 'Você disse GOUFIX!'
-    }
+      message: "Goufix",
+      handler: () => "Você disse GOUFIX!",
+    },
   ];
 
   // Essa é, de fato, a função "window.onMessage":
@@ -45,7 +45,7 @@ const onMessage = (function () {
     }
 
     // Separador (pode ignorar):
-    console.log('-'.repeat(10));
+    console.log("-".repeat(10));
   }
 
   // Retornamos essa função, que será aplicada no escopo global, diferentemente
@@ -56,6 +56,6 @@ const onMessage = (function () {
 // Esse loop é só para você poder enviar várias mensagens sem ficar chamando a
 // função manualmente. Pode ignorá-lo, focando somente na função onMessage.
 // eslint-disable-next-line no-restricted-globals
-while (confirm('Você deseja digitar mais uma mensagem?')) {
-  onMessage(window.prompt('Sua mensagem...'));
+while (confirm("Você deseja digitar mais uma mensagem?")) {
+  onMessage(window.prompt("Sua mensagem..."));
 }
