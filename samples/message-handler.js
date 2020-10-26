@@ -6,7 +6,7 @@
 
 // Crio um escopo privado para declarar as variáveis, assim não poluo o escopo
 // global do navegador (window), que é facilmente poluível.
-const onMessage = (function() {
+const onMessage = (function () {
   // Esse array é privado a este escopo:
   const actionHandlers = [
     {

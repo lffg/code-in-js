@@ -6,8 +6,9 @@
  * @see https://github.com/lffg/code-in-js/blob/master/fdf/t113492.js
  * @license MIT
  */
+(function ($, STORAGE_KEY, styles) {
+  'use strict';
 
-(function($, STORAGE_KEY, styles) {
   const imageList = [
     'https://i.imgur.com/YQ2Dqwn.png', // The first one is the default.
     'https://i.imgur.com/ueLBrgI.png',
@@ -22,7 +23,7 @@
    * @return {object}
    */
   function generateElement() {
-    const choicesList = $.map(imageList, function(image) {
+    const choicesList = $.map(imageList, function (image) {
       return $('<div class="lffg-bgimage__choice">')
         .attr('data-image', image)
         .html($('<img />', { src: image }).prop('outerHTML'))
@@ -61,7 +62,7 @@
       return false;
     }
 
-    const image = function() {
+    const image = function () {
       return localStorage.getItem(STORAGE_KEY);
     };
 
@@ -82,7 +83,7 @@
     setBg();
   }
 
-  $(function() {
+  $(function () {
     // Execute once and stop the script if the API is not supported.
     if (!setBg()) {
       return console.warn(
@@ -91,14 +92,14 @@
     }
 
     generateElement()
-      .on('click', function(event) {
+      .on('click', function (event) {
         event.stopPropagation();
       })
       .on('click', '.lffg-bgimage__toggler', handleToggle)
       .on('click', '.lffg-bgimage__choice', handleChange)
       .appendTo('body');
 
-    $(window).on('click', function() {
+    $(window).on('click', function () {
       if (!$('.lffg-bgimage').is('.lffg-bgimage--hidden')) {
         $('.lffg-bgimage').addClass('lffg-bgimage--hidden');
       }

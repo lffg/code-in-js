@@ -1,3 +1,5 @@
+void pickRandomNumbersForList;
+
 function pickRandomNumbersForList(numbersForListItem, list) {
   const itemsManagerMap = arrToMap(list, 0);
 
@@ -38,6 +40,6 @@ function sortIndex(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
-function sort(arr) {
-  return arr[sortIndex(arr)];
-}
+// function sort(arr) {
+//   return arr[sortIndex(arr)];
+// }

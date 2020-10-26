@@ -6,13 +6,41 @@
   "author": "Luiz Felipe Gonçalves <https://luizfelipe.dev>",
   "license": "MIT",
   "scripts": {
+    "format:raw": "prettier --write --ignore-path .gitignore",
+    "format": "yarn format:raw '**/*.{json,md,yml,yaml}' && yarn lint --fix",
     "lint": "yarn lint:raw .",
-    "lint:fix": "yarn lint:raw --fix .",
-    "lint:raw": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "lint:raw": "eslint --max-warnings=0 --ignore-path .gitignore --ignore-pattern '!.*.*'",
     "gen": "node fdf/meta/generate-readme.js"
   },
-  "dependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-lffg": "^17.0.0"
-  }
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jquery": "^3.5.3",
+    "eslint": "^7.12.0",
+    "eslint-config-lffg": "^20.0.0",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "lffg"
+    ],
+    "overrides": [
+      {
+        "parserOptions": {
+          "sourceType": "script"
+        },
+        "env": {
+          "jquery": true
+        },
+        "files": "fdf/*.js",
+        "rules": {
+          "strict": [
+            "error",
+            "function"
+          ]
+        }
+      }
+    ]
+  },
+  "prettier": "eslint-config-lffg/prettier"
 }

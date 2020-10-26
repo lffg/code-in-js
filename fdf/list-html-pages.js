@@ -8,7 +8,10 @@
 
 /* eslint no-sequences: 0 */
 /* eslint no-unused-vars: 2 */
+/* eslint strict: [2, "safe"] */
 /* eslint no-restricted-globals: 0 */
+
+'use strict';
 
 const pageUrl = `${location.protocol}//${location.host}`.replace(/\/*$/, '');
 

@@ -10,7 +10,9 @@
 
 /* eslint-disable no-param-reassign */
 
-(function($, styles) {
+(function ($, styles) {
+  'use strict';
+
   const colorMap = [
     {
       color: '#ff0000',
@@ -74,8 +76,8 @@
     return '<div class="lffg-post-badge">' + $text.prop('outerHTML') + '</div>';
   }
 
-  $(function() {
-    $('.post').each(function() {
+  $(function () {
+    $('.post').each(function () {
       const $post = $(this);
       const $user = $post.find('.postprofile-name a[href] > span[style]');
       const color = $user.css('color');
@@ -85,15 +87,13 @@
       }
 
       $.each(
-        $.map(colorMap, function(map) {
-          map.color = $('<span>')
-            .css('color', map.color)
-            .css('color');
+        $.map(colorMap, function (map) {
+          map.color = $('<span>').css('color', map.color).css('color');
 
           return map;
         }),
         // Big-O --> O(N^2)
-        function(index, map) {
+        function (index, map) {
           if (map.color !== color) {
             return;
           }

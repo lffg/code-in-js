@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable no-unused-expressions */
 
 // Goal:
@@ -13,9 +12,9 @@ user.query().id;
 user.query().username;
 user.tableName;
 
-// @ts-ignore
+// @ts-expect-error Property 'unknown' does not exist
 user.query().unknown; // Error 😃
-// @ts-ignore
+// @ts-expect-error Property 'unknown' does not exist
 user.unknown; // Error 😃
 
 // API:

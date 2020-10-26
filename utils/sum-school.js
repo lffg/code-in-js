@@ -91,7 +91,7 @@ function createKeyboardListeners() {
       console.log('-'.repeat(40));
 
       // eslint-disable-next-line
-      ;(typeof copy === 'function' ? copy : (a) => false)(
+      (typeof copy === "function" ? copy : (a) => false)(
         sum.toString().replace(/\./, ',')
       );
     }

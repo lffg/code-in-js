@@ -7,7 +7,9 @@
  * @license MIT
  */
 
-(function($, styles) {
+(function ($, styles) {
+  'use strict';
+
   const IMAGE_SOURCE = 'https://i.imgur.com/aTCsNba.png';
   const CONTENT_SELECTOR = '#comments_scroll_div';
 
@@ -21,23 +23,20 @@
 
     $self.addClass('in-use');
 
-    $.get(window.location.pathname, function(response) {
+    $.get(window.location.pathname, function (response) {
       $(CONTENT_SELECTOR).html($(CONTENT_SELECTOR, response).html());
       $self.removeClass('in-use');
     });
   }
 
-  $(function() {
+  $(function () {
     const $trigger = $('<img />', {
       src: IMAGE_SOURCE || 'https://i.imgur.com/aTCsNba.png'
     })
       .addClass('lf-refresh-trigger')
       .on('click', refreshContent);
 
-    $(CONTENT_SELECTOR)
-      .parents('.module')
-      .find('.h3')
-      .append($trigger);
+    $(CONTENT_SELECTOR).parents('.module').find('.h3').append($trigger);
 
     $('head').append($('<style>', { text: styles.join('\n') }));
   });

@@ -8,14 +8,14 @@
  * @license MIT
  */
 
-(function($) {
-  $(function() {
-    $('a[href="#top"]').on('click', function(event) {
+(function ($) {
+  'use strict';
+
+  $(function () {
+    $('a[href="#top"]').on('click', function (event) {
       event.preventDefault();
 
-      $('html, body')
-        .stop()
-        .animate({ scrollTop: 0 }, 'slow');
+      $('html, body').stop().animate({ scrollTop: 0 }, 'slow');
     });
   });
 })(jQuery);

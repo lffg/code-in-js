@@ -126,9 +126,7 @@ function commit() {
   exec(`git add ${README}`);
 
   if (
-    exec('git diff --name-only --cached')
-      .toString()
-      .trim() !== 'fdf/README.md'
+    exec('git diff --name-only --cached').toString().trim() !== 'fdf/README.md'
   ) {
     console.log('No changes.');
     return;
