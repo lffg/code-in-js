@@ -7,12 +7,14 @@ console.table(
     const [, , , disc, , $e1, $e2] = el.children;
     const e1 = extract($e1);
     const e2 = extract($e2);
+    const e3 = 4.9;
 
     return {
       Disciplina: disc.textContent.trim(),
       '1ª Etapa': e1,
       '2ª Etapa': e2,
-      Total: (e1 * 10 + e2 * 10) / 10
+      '3ª Etapa': e3,
+      Total: (e1 * 10 + e2 * 10 + e3 * 10) / 10
     };
   })
 );
